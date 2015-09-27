@@ -189,9 +189,7 @@ return array(
             'collection_name' => 'profile',
             'entity_http_methods' => array(
                 0 => 'GET',
-                1 => 'PATCH',
-                2 => 'PUT',
-                3 => 'DELETE',
+                1 => 'PUT',
             ),
             'collection_http_methods' => array(
                 0 => 'GET',

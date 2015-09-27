@@ -21,14 +21,15 @@ class ProfileResource extends AbstractResourceListener
      * @return ApiProblem|mixed
      */
     public function create($data)
-    {
+    { /*
         $profileEntity = new ProfileEntity();
         $profileEntity->birthday = $data->birthday;
         $profileEntity->photo = $data->photo;
         $profileEntity->gender = $data->gender;
         $profileEntity->email = $data->email;
 
-        return $this->mapper->save($profileEntity);
+        return $this->mapper->save($profileEntity);*/
+        return new ApiProblem(405, 'The POST method has not been defined');
     }
 
     /**
@@ -39,9 +40,7 @@ class ProfileResource extends AbstractResourceListener
      */
     public function delete($id)
     {
-        if($this->mapper->delete($id)){
-            return true;
-        }
+        return new ApiProblem(405, 'The DELETE method has not been defined for individual resources');
     }
 
     /**
