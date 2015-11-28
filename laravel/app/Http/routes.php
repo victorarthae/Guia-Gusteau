@@ -11,6 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    'as' => 'home', 'uses' => 'HomeController@index'
+]);
+
+Route::get('/receita/{id}', [
+    'as' => 'receita', 'uses' => 'RecipeController@index'
+]);
+
+Route::post('/pesquisa', [
+    'as' => 'pesquisa', 'uses' => 'SearchController@index'
+]);
+
+Route::get('cadastro', [
+    'as' => 'cadastro', 'uses' => 'RegisterController@index'
+]);
+
+Route::post('cadastro', [
+    'as' => 'cadastro', 'uses' => 'RegisterController@efetuaCad'
+]);
