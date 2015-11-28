@@ -27,6 +27,10 @@ Route::get('cadastro', [
     'as' => 'cadastro', 'uses' => 'RegisterController@index'
 ]);
 
+Route::get('login', [
+    'as' => 'login', 'uses' => 'LoginController@index'
+]);
+
 Route::post('cadastro', [
     'as' => 'cadastro', 'uses' => 'RegisterController@efetuaCad'
 ]);

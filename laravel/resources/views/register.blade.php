@@ -34,34 +34,23 @@
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="{{ URL::route('login') }}">Login</a></li>
-                <li role="presentation"><a href="{{ URL::route('cadastro') }}">Registrar</a></li>
+                <li role="presentation" class="active"><a href="{{ URL::route('home') }}">Home</a></li>
+                <li role="presentation"><a href="{{ URL::route('login') }}">Login</a></li>
             </ul>
         </nav>
         <h3 class="text-muted"><img src="logo2.png"></h3>
     </div>
-
-    <form action="{!!URL::route('pesquisa')!!}" method="post">
-        <div class="jumbotron">
-            <h1>O que você quer preparar?</h1>
-            <p></p>
-            <input name="text" type="text" placeholder="User virgula para separar os ingredientes" class="form-control">
-            <p></p>
-            <p><input type="submit" value="Pesquisar" class="btn btn-lg btn-success"></p>
-            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-        </div>
-
+    <form class="form-signin">
+        <h2 class="form-signin-heading"></h2>
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+        <label for="inputrePassword" class="sr-only">Confirmar Senha</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Confirmar senha" required>
+        <p></p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
     </form>
-    <div class="row">
-        @foreach($recipes as $r)
-            <div class="col-lg-4">
-                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                <h3>{{ $r->title }}</h3>
-                <p> {{ $r->description }}</p>
-                <p><a class="btn btn-default" href="{{ URL::route('receita', $r->id_recipe) }}" role="button">Ver receita »</a></p>
-            </div>
-        @endforeach
-    </div>
 
     <footer class="footer">
         <p>© Guia Gusteau 2015</p>

@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
 
 class RegisterController extends Controller
 {
+    public function index()
+    {
+        return view('register');
+    }
+
     public function efetuaCad()
     {
         $validator = $this->validaInputCadastro(Request::all());

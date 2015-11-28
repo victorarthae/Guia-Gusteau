@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
-use Request;
-use App\Http\Requests;
+use Illuminate\Http\Request;
 
-class SearchController extends Controller
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,6 @@ class SearchController extends Controller
      */
     public function index()
     {
-        $input = Request::all();
-        print_r($input);
+        return view('login');
     }
 }
