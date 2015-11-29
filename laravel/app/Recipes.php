@@ -8,5 +8,5 @@ class Recipes extends Model
 {
     protected $table = 'recipes';
 
-    protected $fillable = ['title','description', 'grade', 'youtube_link'];
+    protected $fillable = ['title','description', 'grade', 'youtube_link', 'image'];
 }

@@ -42,24 +42,19 @@
     </div>
 
     <div class="">
-        <h2>Nome da receita</h2>
+        <h2>{{ $recipe->title }}</h2>
         <p></p>
-        <p><img align="left" class="img-thumbnail"  src="#" data-holder-rendered="true" style="width: 200px; height: 200px; "></p>
-        <p> Ingredientes necessarios:</p>
+        <p><img align="left" class="img-thumbnail"  src="{{ './../../images/'.$recipe->image.'.jpg' }}" data-holder-rendered="true" style="width: 200px; height: 200px; "></p>
+        <p><b> Ingredientes necessarios:</b></p>
         <p>
         <ul>
-            <li> 1</li>
-            <li> 2</li>
-            <li> 3</li>
-            <li> 4</li>
+            @foreach($ingredient as $i)
+                <li> {{ $i->name }}</li>
+            @endforeach
         </ul>
         </p>
         <p>
-            Lorem ipsum dolor sit amet, cum atqui delectus ei, ad epicuri consulatu dignissim ius, diam bonorum prodesset his et. No nam novum ludus maiestatis, eu scripta quaestio instructior ius. Nec cu bonorum appellantur. Ut nemore fabulas placerat cum, sed dolores mentitum at. Has latine denique ad, mel magna delenit reprimique in, id habeo nostro volutpat vim.
-            Propriae adipiscing vel et. Ius ex erant quodsi admodum, ne mei suas case. Nihil ignota philosophia eos ex. No quem iusto mel, ex dolore integre invidunt mea, est at ferri utinam vocent. Ea eos nullam impetus tibique, mea ut laoreet recusabo eleifend. Propriae repudiare sit an.
-            At quis aliquam apeirian sea, hinc justo per at. Vel quodsi persequeris theophrastus ex, nec porro mentitum omnesque ut, hinc molestie salutandi duo ad. Duo eu unum sapientem, has ex omnes bonorum, apeirian hendrerit ex vim. Ne autem tacimates mel, an sed commodo alienum. Ex novum gloriatur vis, dolore patrioque vel at, et quo diam clita commune.
-            Ei errem doming scriptorem sit, viris suscipit id cum, mea in erant aeque singulis. Ornatus praesent repudiare vis eu. Summo corpora vim an, legere utamur adversarium est te. Et simul convenire qui, ei habeo partem ius.
-            Patrioque vituperatoribus id mel, libris delicata nec eu. Ipsum putent usu eu, eu pri deleniti sententiae complectitur, nec habeo dolorum ut. Convenire partiendo ad usu, democritum adolescens dissentiunt in vix. At aperiam labitur invidunt nam, ad vim ubique verear molestiae. Pri laoreet albucius ex, ea vis inani vivendo probatus, qui labitur definiebas no. Eirmod option interpretaris mea in, nec te facete alienum.
+            <b>Modo de preparo:</b> {{ $recipe->description }}
         </p>
 
     </div>
