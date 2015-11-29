@@ -40,16 +40,28 @@
         </nav>
         <h3 class="text-muted"><img src="logo2.png"></h3>
     </div>
-    <form class="form-signin">
+
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form class="form-signin" action="{!!URL::route('cadastro')!!}" method="post">
         <h2 class="form-signin-heading"></h2>
         <label for="inputEmail" class="sr-only">Email</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" required autofocus>
         <label for="inputPassword" class="sr-only">Senha</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Senha" required>
         <label for="inputrePassword" class="sr-only">Confirmar Senha</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Confirmar senha" required>
+        <input type="password" id="inputPassword" name="password_confirmation" class="form-control" placeholder="Confirmar senha" required>
         <p></p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+        <input type="submit" value="Registrar" class="btn btn-lg btn-primary btn-block">
     </form>
 
     <footer class="footer">
