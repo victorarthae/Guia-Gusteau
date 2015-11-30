@@ -44,19 +44,22 @@
     <div class="">
         <h2>{{ $recipe->title }}</h2>
         <p></p>
-        <p><img align="left" class="img-thumbnail"  src="{{ './../../images/'.$recipe->image }}" data-holder-rendered="true" style="width: 200px; height: 200px; "></p>
-        <p><b> Ingredientes necessarios:</b></p>
-        <p>
-        <ul>
-            @foreach($ingredient as $i)
-                <li> {{ $i->name }}</li>
-            @endforeach
-        </ul>
-        </p>
+        <div><p><img align="left" class="img-thumbnail"  src="{{ './../../images/'.$recipe->image }}" data-holder-rendered="true" style="width: 200px; height: 200px; "></p></div>
+
+        <div style="margin-left: 210px">
+            <p><b> Ingredientes necessarios:</b></p>
+
+            <ul>
+                @foreach($ingredient as $i)
+                    <li> {{ $i->name }}</li>
+                @endforeach
+            </ul>
+            </p>
+        </div>
+
         <p>
             <b>Modo de preparo:</b> {{ $recipe->description }}
         </p>
-
     </div>
     <footer class="footer">
         <p>© Guia Gusteau 2015</p>
