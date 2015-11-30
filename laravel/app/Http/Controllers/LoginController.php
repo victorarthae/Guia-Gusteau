@@ -22,6 +22,12 @@ class LoginController extends Controller
 
     public function LoginUser()
     {
-       die('oi');
+        $user = User::where('username', '=', Request::get('email'))->where('password', '=', md5(Request::get('password')))->get();
+
+        if(!$user->count())
+            return view('login')->with('message', 'Email ou senha estão errados');
+
+        Auth::login($user->first(), true);
+        return redirect()->route('home');
     }
 }

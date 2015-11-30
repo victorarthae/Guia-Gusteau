@@ -38,6 +38,10 @@
                     <li role="presentation" class="active"><a href="{{ URL::route('login') }}">Login</a></li>
                     <li role="presentation"><a href="{{ URL::route('cadastro') }}">Registrar</a></li>
                 </ul>
+            @else
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="{{ URL::route('logout') }}">Sair</a></li>
+                </ul>
             @endif
         </nav>
         <h3 class="text-muted"><img src="logo2.png"></h3>

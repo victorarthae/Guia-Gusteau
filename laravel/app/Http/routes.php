@@ -31,6 +31,10 @@ Route::get('login', [
     'as' => 'login', 'uses' => 'LoginController@index'
 ]);
 
+Route::get('logout', [
+    'as' => 'logout', 'uses' => 'LogoutController@index'
+]);
+
 Route::post('cadastro', [
     'as' => 'cadastro', 'uses' => 'RegisterController@efetuaCad'
 ]);

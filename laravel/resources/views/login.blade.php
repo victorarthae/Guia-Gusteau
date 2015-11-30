@@ -40,6 +40,13 @@
         </nav>
         <h3 class="text-muted"><img src="logo2.png"></h3>
     </div>
+    @if (isset($message))
+        <div class="alert alert-danger">
+            <ul>
+                <li>{{ $message }}</li>
+            </ul>
+        </div>
+    @endif
     <form class="form-signin" action="{!!URL::route('login')!!}" method="post">
         <h2 class="form-signin-heading"></h2>
         <label for="inputEmail" class="sr-only">Email</label>
