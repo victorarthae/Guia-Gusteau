@@ -42,58 +42,31 @@
     </div>
 
     <div class="jumbotron">
-        <input type="text" placeholder="Pesquisa" class="">
-        <a class="btn btn-lg btn-success" href="#" role="button">Pesquisar</a>
+        <form action="{!!URL::route('pesquisa')!!}" method="post">
+            <input type="text" name="text" placeholder="Pesquisa" class="">
+            <input type="submit" value="Pesquisar" class="btn btn-lg btn-success">
+            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+        </form>
         <p>
-        <div class="header clearfix">
-            <ul class="nav nav-pills pull-left">
-                <li><a href="">X Ingrediente1 </a></li>
-                <li><a href="">X ingrediente2 </a></li>
-                <li><a href="">X ingrediente3 </a></li>
-                <li><a href="">X ingrediente4 </a></li>
-            </ul>
-        </div>
+        {{--<div class="header clearfix">--}}
+            {{--<ul class="nav nav-pills pull-left">--}}
+                {{--<li><a href="">X Ingrediente1 </a></li>--}}
+                {{--<li><a href="">X ingrediente2 </a></li>--}}
+                {{--<li><a href="">X ingrediente3 </a></li>--}}
+                {{--<li><a href="">X ingrediente4 </a></li>--}}
+            {{--</ul>--}}
+        {{--</div>--}}
         </p>
     </div>
     <div class="row">
-        <div class="col-lg-4">
-            <a href="#">
-                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                <h4>Nome da Receita</h4>
-            </a>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <a href="#">
-                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                <h4>Nome da Receita</h4>
-            </a>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <a href="#">
-                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                <h4>Nome da REceita</h4>
-            </a>
-        </div><!-- /.col-lg-4 -->
-    </div>
-    <div class="row">
-        <div class="col-lg-4">
-            <a href="#">
-                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                <h4>Nome da Receita</h4>
-            </a>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <a href="#">
-                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                <h4>Nome da Receita</h4>
-            </a>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <a href="#">
-                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                <h4>Nome da REceita</h4>
-            </a>
-        </div><!-- /.col-lg-4 -->
+        @foreach($recipes as $r)
+            <div class="col-lg-4">
+                <a href="{{ URL::route('receita', $r->id_recipe) }}">
+                    <img class="img-circle" src="{{  './../../images/'.$r->image  }}" alt="Generic placeholder image" width="140" height="140">
+                    <h4>{{  $r->title }}</h4>
+                </a>
+            </div><!-- /.col-lg-4 -->
+        @endforeach
     </div>
 
     <footer class="footer">
