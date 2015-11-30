@@ -33,10 +33,12 @@
 <div class="container">
     <div class="header clearfix">
         <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="{{ URL::route('login') }}">Login</a></li>
-                <li role="presentation"><a href="{{ URL::route('cadastro') }}">Registrar</a></li>
-            </ul>
+            @if(!Auth::check())
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="{{ URL::route('login') }}">Login</a></li>
+                    <li role="presentation"><a href="{{ URL::route('cadastro') }}">Registrar</a></li>
+                </ul>
+            @endif
         </nav>
         <h3 class="text-muted"><img src="logo2.png"></h3>
     </div>
@@ -55,7 +57,7 @@
     <div class="row">
         @foreach($recipes as $r)
             <div class="col-lg-4">
-                <img class="img-circle" src="{{  './../../images/'.$r->image.'.jpg'  }}" alt="Generic placeholder image" width="140" height="140">
+                <img class="img-circle" src="{{  './../../images/'.$r->image  }}" alt="Generic placeholder image" width="140" height="140">
                 <h3>{{ $r->title }}</h3>
                 <p> {{ $r->description }}</p>
                 <p><a class="btn btn-default" href="{{ URL::route('receita', $r->id_recipe) }}" role="button">Ver receita »</a></p>

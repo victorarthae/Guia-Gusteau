@@ -54,7 +54,7 @@
     <form class="form-signin" action="{!!URL::route('cadastro')!!}" method="post">
         <h2 class="form-signin-heading"></h2>
         <label for="inputEmail" class="sr-only">Email</label>
-        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" required autofocus>
+        <input type="email" id="inputEmail" name="username" class="form-control" placeholder="Email" required autofocus>
         <label for="inputPassword" class="sr-only">Senha</label>
         <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Senha" required>
         <label for="inputrePassword" class="sr-only">Confirmar Senha</label>

@@ -40,14 +40,15 @@
         </nav>
         <h3 class="text-muted"><img src="logo2.png"></h3>
     </div>
-    <form class="form-signin">
+    <form class="form-signin" action="{!!URL::route('login')!!}" method="post">
         <h2 class="form-signin-heading"></h2>
         <label for="inputEmail" class="sr-only">Email</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" required autofocus>
         <label for="inputPassword" class="sr-only">Senha</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Senha" required>
         <p></p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+        <input type="submit" value="Entrar" class="btn btn-lg btn-primary btn-block">
     </form>
 
     <footer class="footer">

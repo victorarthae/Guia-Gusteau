@@ -44,7 +44,7 @@
     <div class="">
         <h2>{{ $recipe->title }}</h2>
         <p></p>
-        <p><img align="left" class="img-thumbnail"  src="{{ './../../images/'.$recipe->image.'.jpg' }}" data-holder-rendered="true" style="width: 200px; height: 200px; "></p>
+        <p><img align="left" class="img-thumbnail"  src="{{ './../../images/'.$recipe->image }}" data-holder-rendered="true" style="width: 200px; height: 200px; "></p>
         <p><b> Ingredientes necessarios:</b></p>
         <p>
         <ul>

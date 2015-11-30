@@ -34,3 +34,8 @@ Route::get('login', [
 Route::post('cadastro', [
     'as' => 'cadastro', 'uses' => 'RegisterController@efetuaCad'
 ]);
+
+Route::post('login', [
+    'as' => 'login', 'uses' => 'LoginController@LoginUser'
+]);
+

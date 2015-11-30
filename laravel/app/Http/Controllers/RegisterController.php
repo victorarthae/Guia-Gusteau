@@ -23,9 +23,9 @@ class RegisterController extends Controller
         if($validator->fails())
            return view('register')->withErrors($validator);
 
-        $user = User::create([
-            'username' => Request::get('email'),
-            'password' => Hash::make(Request::get('password'))
+        User::create([
+            'username' => Request::get('username'),
+            'password' => md5(Request::get('password'))
         ]);
 
         return redirect()->route('home');
@@ -34,7 +34,7 @@ class RegisterController extends Controller
     private function validaInputCadastro($input)
     {
         return validator::make($input, [
-            'email' => 'required|email|max:255|unique:users',
+            'username' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
     }
