@@ -18,7 +18,7 @@
     <link href="{{ URL::route('home').'/Narrow Jumbotron Template for Bootstrap_files/jumbotron-narrow.css' }}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="{{ URL::route('home').'/assets/js/ie8-responsive-file-warning.js' }}"></script><![endif]-->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="{{ URL::route('home').'/Narrow Jumbotron Template for Bootstrap_files/ie-emulation-modes-warning.js' }}"></script><style type="text/css"></style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -34,13 +34,12 @@
     <div class="header clearfix">
         <nav>
             @if(!Auth::check())
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="{{ URL::route('home') }}">Home</a></li>
-                <li role="presentation"><a href="{{ URL::route('cadastro') }}">Registrar</a></li>
-            </ul>
-            @else
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation" class="active"><a href="{{ URL::route('home') }}">Home</a></li>
+                    <li role="presentation"><a href="{{ URL::route('login') }}">Login</a></li>
+                </ul>
+            @else
+                <ul class="nav nav-pills pull-right">
                     <li role="presentation" class="active"><a href="{{ URL::route('logout') }}">Sair</a></li>
                 </ul>
             @endif
@@ -49,34 +48,36 @@
     </div>
 
     <div class="jumbotron">
-        <form action="{!!URL::route('pesquisa')!!}" method="post">
-            <input type="text" name="text" placeholder="Pesquisa" class="">
-            <input type="submit" value="Pesquisar" class="btn btn-lg btn-success">
-            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-        </form>
-        <p>
-        <div class="header clearfix">
-            <ul class="nav nav-pills pull-left">
-                @foreach($all_ingredient as $index => $i)
-                    <li><a href="{{ URL::route('pesquisa-remove-id-get', array($ingredients_id, $index)) }}"> x {{ $i }}</a></li>
-                @endforeach
-            </ul>
-        </div>
-        </p>
+        @if(Auth::check())
+            <h1>Geladeira</h1>
+            <div>
+                <form action="{!!URL::route('geladeira-add')!!}" method="post">
+                    <select class="form-control" name="id_ingredient">
+                        @foreach($all_ingredient as $index => $all)
+                            <option value="{{ $all->id_ingredient }}">{{ $all->name }}</option>
+                        @endforeach
+                    </select>
+                    <input type="submit" value="Adicionar a geladeira" class="btn btn-lg btn-success" style="margin-top: 10px">
+                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                </form>
+            </div>
+            <div>
+                <ul  class="nav nav-pills pull-left">
+                    @foreach($ingredient as $index => $i)
+                        <li><a href="{{ URL::route('geladeira-del', $index) }}">x {{ $i }} </a></li>
+                    @endforeach
+                </ul>
+            </div>
+            <div style="margin-top: 50px">
+                @if(count($ingredient) > 0)
+                    <a href="{{ URL::route('pesquisa-geladeira') }}"><input type="submit" value="Pesquisar" class="btn btn-lg btn-success"></a>
+                @endif
+            </div>
+        @else
+            <h1>Voce nao esta logado</h1>
+        @endif
     </div>
-    <div class="row">
-        @foreach($recipes as $r)
-            <div class="col-lg-4">
-                <a href="{{ URL::route('receita', $r['recipe']->id_recipe) }}">
-                    <img class="img-circle" src="{{ URL::route('home').'/images/'.$r['recipe']->image  }}" alt="Generic placeholder image" width="140" height="140">
-                    <h4>{{  $r['recipe']->title }}</h4>
-                </a>
-                @foreach($r['ingredients'] as $in)
-                    - {{ $in }}
-                @endforeach
-            </div><!-- /.col-lg-4 -->
-        @endforeach
-    </div>
+
 
     <footer class="footer">
         <p>© Guia Gusteau 2015</p>

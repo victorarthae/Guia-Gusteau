@@ -19,8 +19,28 @@ Route::get('/receita/{id}', [
     'as' => 'receita', 'uses' => 'RecipeController@index'
 ]);
 
+Route::get('/geladeira', [
+    'as' => 'geladeira', 'uses' => 'FreezerController@index'
+]);
+
+Route::post('/geladeira/add', [
+    'as' => 'geladeira-add', 'uses' => 'FreezerController@addIngredient'
+]);
+
+Route::get('/geladeira/del/{id}', [
+    'as' => 'geladeira-del', 'uses' => 'FreezerController@delIngredient'
+]);
+
 Route::post('/pesquisa', [
     'as' => 'pesquisa', 'uses' => 'SearchController@index'
+]);
+
+Route::get('/pesquisa/geladeira', [
+    'as' => 'pesquisa-geladeira', 'uses' => 'SearchController@searchFreezer'
+]);
+
+Route::get('/pesquisa/remove/{ids}/{id}', [
+    'as' => 'pesquisa-remove-id-get', 'uses' => 'SearchController@removeIngredientId'
 ]);
 
 Route::get('cadastro', [

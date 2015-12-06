@@ -40,6 +40,7 @@
                 </ul>
             @else
                 <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="{{ URL::route('geladeira') }}">Geladeira</a></li>
                     <li role="presentation" class="active"><a href="{{ URL::route('logout') }}">Sair</a></li>
                 </ul>
             @endif
