@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Freezers;
 use App\Ingredients;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Request;
