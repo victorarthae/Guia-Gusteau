@@ -49,7 +49,7 @@ class FreezerController extends Controller
 
     public function delIngredient($ingredient_id)
     {
-        DB::select("DELETE FROM freezers WHERE id_user = ? AND id_ingredient = ?", [Auth::user()->id, $ingredient_id]);
+        DB::select("DELETE FROM freezers WHERE id_user = ? AND id_ingredient = ?;", [Auth::user()->id, $ingredient_id]);
         $array = $this->populateArray();
         return view('freezer')->with($array);
     }
