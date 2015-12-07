@@ -56,9 +56,17 @@
 
     <div class="">
         <h2>{{ $recipe->title }}</h2>
+        @if(Auth::check())
         <label>Rank</label>
-        <input id="input-2c" value="3" class="rating" min="0" max="5" step="0.5" data-size="sm"
-               data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
+        <form action="{!!URL::route('rating')!!}" method="post">
+                <input id="input-2c" name="rating" value="{{ $rating }}" class="rating" min="0" max="5" step="0.5" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
+                @if($rating == 0)
+                <p><input type="submit" value="Votar" class="btn btn-lg btn-success"></p>
+                @endif
+                <input type="hidden" name="recipe_id" value="{{ $recipe->id_recipe }}" />
+                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+        </form>
+        @endif
         <p></p>
         <div><p><img align="left" class="img-thumbnail"  src="{{ './../../images/'.$recipe->image }}" data-holder-rendered="true" style="width: 200px; height: 200px; "></p></div>
 

@@ -57,7 +57,6 @@
             <p><input type="submit" value="Pesquisar" class="btn btn-lg btn-success"></p>
             <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
         </div>
-
     </form>
     <div class="row">
         @foreach($recipes as $r)

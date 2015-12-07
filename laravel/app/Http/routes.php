@@ -63,3 +63,8 @@ Route::post('login', [
     'as' => 'login', 'uses' => 'LoginController@LoginUser'
 ]);
 
+Route::post('rating', [
+    'as' => 'rating', 'uses' => 'RatingController@index'
+]);
+
+
