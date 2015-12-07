@@ -46,9 +46,20 @@ class SearchController extends Controller
             }
         }
 
+        $todos_ingredient = Ingredients::all();
         $ingredients_id = serialize($ingredients_id);
 
-        return ['recipes' => $recipes, 'all_ingredient' => $all_ingredient, 'ingredients_id' => $ingredients_id];
+        $freezer = NULL;
+        if(Auth::check())
+        {
+            $geladeira = Freezers::where('id_user', '=', Auth::user()->id)->get();
+            foreach($geladeira as $f)
+            {
+                $freezer[$f->id_ingredient] = Ingredients::where('id_ingredient', '=', $f->id_ingredient)->first()->name;
+            }
+        }
+
+        return ['recipes' => $recipes, 'all_ingredient' => $all_ingredient, 'ingredients_id' => $ingredients_id, 'freezer' => $freezer, 'todos_ingredient' => $todos_ingredient];
     }
 
     public function removeIngredientId($ids, $id)
@@ -64,6 +75,17 @@ class SearchController extends Controller
             $array_name[] = Ingredients::where('id_ingredient', '=', $a)->first()->name;
         }
         $array = $this->populateSearchView($array_name);
+        return  view('search')->with($array);
+    }
+
+    public function addIngredientInSearch()
+    {
+        $all_ingredient = unserialize(Request::get('all_ingredient'));
+
+        $ingredient = Ingredients::where('id_ingredient', '=', Request::get('freezer'))->first();
+        $all_ingredient[$ingredient->id_ingredient] = $ingredient->name;
+
+        $array = $this->populateSearchView($all_ingredient);
         return  view('search')->with($array);
     }
 

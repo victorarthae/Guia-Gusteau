@@ -40,6 +40,7 @@
             </ul>
             @else
                 <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="{{ URL::route('geladeira') }}">Geladeira</a></li>
                     <li role="presentation" class="active"><a href="{{ URL::route('home') }}">Home</a></li>
                     <li role="presentation" class="active"><a href="{{ URL::route('logout') }}">Sair</a></li>
                 </ul>
@@ -54,7 +55,6 @@
             <input type="submit" value="Pesquisar" class="btn btn-lg btn-success">
             <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
         </form>
-        <p>
         <div class="header clearfix">
             <ul class="nav nav-pills pull-left">
                 @foreach($all_ingredient as $index => $i)
@@ -62,7 +62,36 @@
                 @endforeach
             </ul>
         </div>
-        </p>
+
+        <div class="header clearfix">
+            <h4>Adicionar ingrediente a busca</h4>
+            <form action="{!!URL::route('add-ingredient')!!}" method="post">
+                <select class="form-control" name="freezer">
+                    @foreach($todos_ingredient as $index => $t)
+                        <option value="{{ $t->id_ingredient }}">{{ $t->name }}</option>
+                    @endforeach
+                </select>
+                <input type="submit" value="Adicionar a busca" class="btn btn-lg btn-success" style="margin-top: 10px">
+                <input type="hidden" name="all_ingredient" id="all_ingredient" value="{{ serialize($all_ingredient) }}" />
+                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+            </form>
+        </div>
+
+        @if(!empty($freezer) && Auth::check())
+        <div class="header clearfix">
+            <h4>Ingredientes da geladeira</h4>
+            <form action="{!!URL::route('add-ingredient')!!}" method="post">
+                <select class="form-control" name="freezer">
+                    @foreach($freezer as $index => $f)
+                        <option value="{{ $index }}">{{ $f }}</option>
+                    @endforeach
+                </select>
+                <input type="submit" value="Adicionar a busca" class="btn btn-lg btn-success" style="margin-top: 10px">
+                <input type="hidden" name="all_ingredient" id="all_ingredient" value="{{ serialize($all_ingredient) }}" />
+                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+            </form>
+        </div>
+        @endif
     </div>
     <div class="row">
         @foreach($recipes as $r)

@@ -67,4 +67,8 @@ Route::post('rating', [
     'as' => 'rating', 'uses' => 'RatingController@index'
 ]);
 
+Route::post('add-ingredient', [
+    'as' => 'add-ingredient', 'uses' => 'SearchController@addIngredientInSearch'
+]);
+
 

@@ -32,7 +32,9 @@ class RecipeController extends Controller
         {
             $grade = Grades::where('id_user', '=', Auth::user()->id)->where('id_recipe', '=', $recipe_id);
             if($grade->count())
+            {
                 $rating = $grade->first()->grade;
+            }
         }
         return view('recipes')->with(['recipe' => $recipe, 'ingredient' => $ingredient, 'rating' => $rating]);
     }
