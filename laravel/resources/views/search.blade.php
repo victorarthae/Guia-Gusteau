@@ -68,7 +68,9 @@
             <form action="{!!URL::route('add-ingredient')!!}" method="post">
                 <select class="form-control" name="freezer">
                     @foreach($todos_ingredient as $index => $t)
-                        <option value="{{ $t->id_ingredient }}">{{ $t->name }}</option>
+                        @if(!in_array($t->name, $all_ingredient))
+                            <option value="{{ $t->id_ingredient }}">{{ $t->name }}</option>
+                        @endif
                     @endforeach
                 </select>
                 <input type="submit" value="Adicionar a busca" class="btn btn-lg btn-success" style="margin-top: 10px">
@@ -83,7 +85,9 @@
             <form action="{!!URL::route('add-ingredient')!!}" method="post">
                 <select class="form-control" name="freezer">
                     @foreach($freezer as $index => $f)
-                        <option value="{{ $index }}">{{ $f }}</option>
+                        @if(!in_array($f, $all_ingredient))
+                            <option value="{{ $index }}">{{ $f }}</option>
+                        @endif
                     @endforeach
                 </select>
                 <input type="submit" value="Adicionar a busca" class="btn btn-lg btn-success" style="margin-top: 10px">

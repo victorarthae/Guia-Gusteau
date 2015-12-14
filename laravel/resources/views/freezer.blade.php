@@ -54,7 +54,9 @@
                 <form action="{!!URL::route('geladeira-add')!!}" method="post">
                     <select class="form-control" name="id_ingredient">
                         @foreach($all_ingredient as $index => $all)
-                            <option value="{{ $all->id_ingredient }}">{{ $all->name }}</option>
+                            @if(!in_array($all->name, $ingredient))
+                                <option value="{{ $all->id_ingredient }}">{{ $all->name }}</option>
+                            @endif
                         @endforeach
                     </select>
                     <input type="submit" value="Adicionar a geladeira" class="btn btn-lg btn-success" style="margin-top: 10px">
